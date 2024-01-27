@@ -216,6 +216,7 @@ func handleProtoPacket(data []byte, fromServer bool, timestamp time.Time) {
 	if packetId == playerGetTokenScRspPacketId {
 		data, objectJson = handlePlayerGetTokenScRspPacket(data, packetId, objectJson)
 	} else {
+		log.Fatal("Data:", data)
 		data = removeHeaderForParse(data)
 		objectJson = parseProtoToInterface(packetId, data)
 	}
