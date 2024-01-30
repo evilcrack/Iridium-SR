@@ -261,12 +261,11 @@ func buildPacketToSend(data []byte, fromSever bool, timestamp time.Time, packetI
 	if err != nil {
 		log.Println("Json marshal error", err)
 	}
-	logPacket(packet)
+	
 
-	if packetFilter[GetProtoNameById(packetId)] {
+	if packetFilter[GetProtoNameById(packetId)] &&GetProtoNameById(packetId)!=""{
 		return
 	}
-	log.Println("sendStreamMsg")
 	sendStreamMsg(string(jsonResult))
 }
 
