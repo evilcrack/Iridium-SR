@@ -216,7 +216,7 @@ func handleProtoPacket(data []byte, fromServer bool, timestamp time.Time) {
 	if packetId == playerGetTokenScRspPacketId {
 		data, objectJson = handlePlayerGetTokenScRspPacket(data, packetId, objectJson)
 	} else {
-		log.Println("Data:", data)
+		//log.Println("Data:", data)
 		data = removeHeaderForParse(data)
 		objectJson = parseProtoToInterface(packetId, data)
 	}
@@ -266,6 +266,7 @@ func buildPacketToSend(data []byte, fromSever bool, timestamp time.Time, packetI
 	if packetFilter[GetProtoNameById(packetId)] {
 		return
 	}
+	log.Println("sendStreamMsg")
 	sendStreamMsg(string(jsonResult))
 }
 
